@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\carlo\\Downloads\\actividadesNTT\\OpenAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA9AE21-2953-95A7-310F-12CAF46A46EC}|src\\GestorReservas.Client\\GestorReservas.Client.csproj|c:\\users\\carlo\\downloads\\actividadesntt\\openapi\\src\\gestorreservas.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA9AE21-2953-95A7-310F-12CAF46A46EC}|src\\GestorReservas.Client\\GestorReservas.Client.csproj|solutionrelative:src\\gestorreservas.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13180D40-1593-0174-FD89-4439B44D9D26}|src\\GestorReservas.Api\\GestorReservas.Api.csproj|c:\\users\\carlo\\downloads\\actividadesntt\\openapi\\src\\gestorreservas.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13180D40-1593-0174-FD89-4439B44D9D26}|src\\GestorReservas.Api\\GestorReservas.Api.csproj|solutionrelative:src\\gestorreservas.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13180D40-1593-0174-FD89-4439B44D9D26}|src\\GestorReservas.Api\\GestorReservas.Api.csproj|c:\\users\\carlo\\downloads\\actividadesntt\\openapi\\src\\gestorreservas.api\\controllers\\reservascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13180D40-1593-0174-FD89-4439B44D9D26}|src\\GestorReservas.Api\\GestorReservas.Api.csproj|solutionrelative:src\\gestorreservas.api\\controllers\\reservascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13180D40-1593-0174-FD89-4439B44D9D26}|src\\GestorReservas.Api\\GestorReservas.Api.csproj|c:\\users\\carlo\\downloads\\actividadesntt\\openapi\\src\\gestorreservas.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13180D40-1593-0174-FD89-4439B44D9D26}|src\\GestorReservas.Api\\GestorReservas.Api.csproj|solutionrelative:src\\gestorreservas.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\carlo\\Downloads\\actividadesNTT\\OpenAPI\\src\\GestorReservas.Api\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "src\\GestorReservas.Api\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\carlo\\Downloads\\actividadesNTT\\OpenAPI\\src\\GestorReservas.Api\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "src\\GestorReservas.Api\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-29T04:24:42.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\carlo\\Downloads\\actividadesNTT\\OpenAPI\\src\\GestorReservas.Client\\Program.cs",
+              "RelativeDocumentMoniker": "src\\GestorReservas.Client\\Program.cs",
+              "ToolTip": "C:\\Users\\carlo\\Downloads\\actividadesNTT\\OpenAPI\\src\\GestorReservas.Client\\Program.cs",
+              "RelativeToolTip": "src\\GestorReservas.Client\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-29T04:24:33.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReservasController.cs",
+              "DocumentMoniker": "C:\\Users\\carlo\\Downloads\\actividadesNTT\\OpenAPI\\src\\GestorReservas.Api\\Controllers\\ReservasController.cs",
+              "RelativeDocumentMoniker": "src\\GestorReservas.Api\\Controllers\\ReservasController.cs",
+              "ToolTip": "C:\\Users\\carlo\\Downloads\\actividadesNTT\\OpenAPI\\src\\GestorReservas.Api\\Controllers\\ReservasController.cs",
+              "RelativeToolTip": "src\\GestorReservas.Api\\Controllers\\ReservasController.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-29T04:15:40.492Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\carlo\\Downloads\\actividadesNTT\\OpenAPI\\src\\GestorReservas.Api\\Program.cs",
+              "RelativeDocumentMoniker": "src\\GestorReservas.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\carlo\\Downloads\\actividadesNTT\\OpenAPI\\src\\GestorReservas.Api\\Program.cs",
+              "RelativeToolTip": "src\\GestorReservas.Api\\Program.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-29T04:14:20.52Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

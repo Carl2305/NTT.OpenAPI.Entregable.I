@@ -1,0 +1,660 @@
+﻿{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API de Gestión de Reservas de Salas",
+    "description": "API REST desarrollada en ASP.NET Core para administrar las reservas de salas de reuniones de una organización. Permite consultar, registrar, actualizar y cancelar reservas con documentación OpenAPI y seguridad JWT Bearer.",
+    "contact": {
+      "name": "Equipo de Desarrollo NTT / Capacitación OpenAPI",
+      "email": "contacto@organizacion.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Genera un token de acceso JWT Bearer para autorizar peticiones protegidas.",
+        "requestBody": {
+          "description": "Credenciales de acceso del usuario (ej. admin / admin123).",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Retorna el token JWT generado exitosamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Si los datos de la solicitud de login son inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Si las credenciales ingresadas son incorrectas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Reservas": {
+      "get": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Obtiene el listado completo de reservas registradas, con opción de filtrado por fecha.",
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "query",
+            "description": "Fecha opcional para filtrar las reservas (formato YYYY-MM-DD).",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna el listado de reservas solicitadas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservaResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Registra una nueva reserva de sala de reuniones.",
+        "description": "Este endpoint requiere autenticación mediante Bearer Token/JWT.\r\n\r\n**Validaciones aplicadas:**\r\n- La hora de fin debe ser posterior a la hora de inicio.\r\n- La cantidad de asistentes debe ser mayor a cero.\r\n- Todos los campos obligatorios deben estar presentes.",
+        "requestBody": {
+          "description": "Objeto con la información necesaria para crear la reserva.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearReservaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearReservaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearReservaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Reserva creada con éxito.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Si los datos proporcionados violan las reglas de validación.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Si no se proporciona un Bearer Token válido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Reservas/{id}": {
+      "get": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Obtiene el detalle de una reserva específica mediante su identificador único (Id).",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador numérico de la reserva.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna la reserva encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Si la reserva solicitada no existe.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Actualiza la información de una reserva existente.",
+        "description": "Este endpoint requiere autenticación mediante Bearer Token/JWT.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador numérico de la reserva a actualizar.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Datos actualizados de la reserva.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarReservaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarReservaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarReservaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reserva actualizada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Si la información enviada es inválida o no cumple las reglas de negocio.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Si el cliente no está autenticado con Bearer Token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Si no existe la reserva con el Id especificado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Cancela o elimina una reserva existente según su Id.",
+        "description": "Este endpoint requiere autenticación mediante Bearer Token/JWT.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la reserva a eliminar.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Si la reserva fue eliminada correctamente."
+          },
+          "401": {
+            "description": "Si el cliente no posee un Bearer Token JWT válido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Si no se encontró la reserva con el Id proporcionado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActualizarReservaDto": {
+        "required": [
+          "cantidadAsistentes",
+          "estado",
+          "fechaReserva",
+          "horaFin",
+          "horaInicio",
+          "motivoReunion",
+          "nombreResponsable",
+          "nombreSala"
+        ],
+        "type": "object",
+        "properties": {
+          "nombreSala": {
+            "maxLength": 100,
+            "minLength": 3,
+            "type": "string",
+            "description": "Nombre de la sala reservada.",
+            "example": "Sala B - Ejecutiva"
+          },
+          "fechaReserva": {
+            "type": "string",
+            "description": "Fecha programada para la reserva.",
+            "format": "date",
+            "example": "2026-10-20"
+          },
+          "horaInicio": {
+            "type": "string",
+            "description": "Hora de inicio de la reunión.",
+            "format": "date-span",
+            "example": "14:00:00"
+          },
+          "horaFin": {
+            "type": "string",
+            "description": "Hora de fin de la reunión. Debe ser posterior a la hora de inicio.",
+            "format": "date-span",
+            "example": "16:00:00"
+          },
+          "nombreResponsable": {
+            "maxLength": 100,
+            "minLength": 3,
+            "type": "string",
+            "description": "Nombre de la persona responsable.",
+            "example": "Ana María Torres"
+          },
+          "cantidadAsistentes": {
+            "maximum": 500,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Cantidad de asistentes previstos.",
+            "format": "int32",
+            "example": 10
+          },
+          "motivoReunion": {
+            "maxLength": 250,
+            "minLength": 5,
+            "type": "string",
+            "description": "Motivo o descripción de la reunión.",
+            "example": "Reunión ampliada de presentación de avance de OpenAPI"
+          },
+          "estado": {
+            "$ref": "#/components/schemas/EstadoReserva"
+          }
+        },
+        "additionalProperties": false,
+        "description": "DTO para la actualización de una reserva existente."
+      },
+      "CrearReservaDto": {
+        "required": [
+          "cantidadAsistentes",
+          "fechaReserva",
+          "horaFin",
+          "horaInicio",
+          "motivoReunion",
+          "nombreResponsable",
+          "nombreSala"
+        ],
+        "type": "object",
+        "properties": {
+          "nombreSala": {
+            "maxLength": 100,
+            "minLength": 3,
+            "type": "string",
+            "description": "Nombre de la sala que se desea reservar.",
+            "example": "Sala B - Ejecutiva"
+          },
+          "fechaReserva": {
+            "type": "string",
+            "description": "Fecha programada para la reserva.",
+            "format": "date",
+            "example": "2026-10-20"
+          },
+          "horaInicio": {
+            "type": "string",
+            "description": "Hora de inicio de la reunión.",
+            "format": "date-span",
+            "example": "14:00:00"
+          },
+          "horaFin": {
+            "type": "string",
+            "description": "Hora de fin de la reunión. Debe ser posterior a la hora de inicio.",
+            "format": "date-span",
+            "example": "15:30:00"
+          },
+          "nombreResponsable": {
+            "maxLength": 100,
+            "minLength": 3,
+            "type": "string",
+            "description": "Nombre de la persona o encargado responsable de la reserva.",
+            "example": "Ana María Torres"
+          },
+          "cantidadAsistentes": {
+            "maximum": 500,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Cantidad de personas que asistirán. Debe ser mayor a 0.",
+            "format": "int32",
+            "example": 5
+          },
+          "motivoReunion": {
+            "maxLength": 250,
+            "minLength": 5,
+            "type": "string",
+            "description": "Motivo o descripción de la reunión.",
+            "example": "Revisión de arquitectura del proyecto API OpenAPI"
+          }
+        },
+        "additionalProperties": false,
+        "description": "DTO para la creación de una nueva reserva de sala."
+      },
+      "EstadoReserva": {
+        "enum": [
+          "Pendiente",
+          "Confirmada",
+          "Cancelada"
+        ],
+        "type": "string",
+        "description": "Representa los posibles estados de una reserva de sala."
+      },
+      "LoginRequestDto": {
+        "required": [
+          "password",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Nombre de usuario (ej. admin o usuario).",
+            "example": "admin"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Contraseña del usuario.",
+            "example": "admin123"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Solicitud de autenticación para obtener un token JWT."
+      },
+      "LoginResponseDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token JWT Bearer generado.",
+            "nullable": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          },
+          "tokenType": {
+            "type": "string",
+            "description": "Tipo de token emitido.",
+            "nullable": true,
+            "example": "Bearer"
+          },
+          "expiresInMinutes": {
+            "type": "integer",
+            "description": "Duración del token en minutos.",
+            "format": "int32",
+            "example": 60
+          }
+        },
+        "additionalProperties": false,
+        "description": "Respuesta de autenticación con el Bearer Token generado."
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {}
+      },
+      "ReservaResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador único de la reserva.",
+            "format": "int32",
+            "example": 1
+          },
+          "nombreSala": {
+            "type": "string",
+            "description": "Nombre de la sala reservada.",
+            "nullable": true,
+            "example": "Sala A - Innovación"
+          },
+          "fechaReserva": {
+            "type": "string",
+            "description": "Fecha de la reserva (YYYY-MM-DD).",
+            "format": "date",
+            "example": "2026-10-15"
+          },
+          "horaInicio": {
+            "type": "string",
+            "description": "Hora de inicio de la reunión (HH:mm:ss).",
+            "format": "date-span",
+            "example": "09:00:00"
+          },
+          "horaFin": {
+            "type": "string",
+            "description": "Hora de finalización de la reunión (HH:mm:ss).",
+            "format": "date-span",
+            "example": "10:30:00"
+          },
+          "nombreResponsable": {
+            "type": "string",
+            "description": "Nombre de la persona responsable.",
+            "nullable": true,
+            "example": "Carlos Mendoza"
+          },
+          "cantidadAsistentes": {
+            "type": "integer",
+            "description": "Cantidad de asistentes previstos.",
+            "format": "int32",
+            "example": 8
+          },
+          "motivoReunion": {
+            "type": "string",
+            "description": "Motivo o agenda de la reunión.",
+            "nullable": true,
+            "example": "Reunión de planificación trimestral"
+          },
+          "estado": {
+            "$ref": "#/components/schemas/EstadoReserva"
+          }
+        },
+        "additionalProperties": false,
+        "description": "DTO de respuesta que contiene la información completa de una reserva."
+      },
+      "ValidationProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": {}
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Esquema de autenticación mediante JWT Bearer Token.\n\nEjemplo: Obtenga un token mediante el endpoint `POST /api/auth/login` e ingréselo a continuación en la opción Authorize (con o sin el prefijo 'Bearer ').",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}

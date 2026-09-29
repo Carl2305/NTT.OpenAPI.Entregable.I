@@ -1,0 +1,17 @@
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\GestorReservas.Client.csproj.AssemblyReference.cache
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\GestorReservas.Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\GestorReservas.Client.AssemblyInfoInputs.cache
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\GestorReservas.Client.AssemblyInfo.cs
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\GestorReservas.Client.csproj.CoreCompileInputs.cache
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\bin\Debug\net9.0\GestorReservas.Client.exe
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\bin\Debug\net9.0\GestorReservas.Client.deps.json
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\bin\Debug\net9.0\GestorReservas.Client.runtimeconfig.json
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\bin\Debug\net9.0\GestorReservas.Client.dll
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\bin\Debug\net9.0\GestorReservas.Client.pdb
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\GestorRe.D4A57F86.Up2Date
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\GestorReservas.Client.dll
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\refint\GestorReservas.Client.dll
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\GestorReservas.Client.pdb
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\GestorReservas.Client.genruntimeconfig.cache
+C:\Users\carlo\Downloads\actividadesNTT\OpenAPI\src\GestorReservas.Client\obj\Debug\net9.0\ref\GestorReservas.Client.dll
